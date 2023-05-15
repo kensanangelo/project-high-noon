@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://s5efehwve6ek"]
+
+[ext_resource type="Script" path="res://assets/player/player.gd" id="1_hnimx"]
+[ext_resource type="SpriteFrames" uid="uid://b7d3swjlkfy70" path="res://assets/player/player_anims.tres" id="1_mo6py"]
+[ext_resource type="Script" path="res://assets/player/player_controls.gd" id="3_2vdyo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_brfgm"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_hnimx")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(23, 25)
+shape = SubResource("CapsuleShape2D_brfgm")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_mo6py")
+animation = &"idle_left"
+frame = 2
+frame_progress = 0.385283
+centered = false
+
+[node name="PlayerControls" type="Node" parent="."]
+script = ExtResource("3_2vdyo")
