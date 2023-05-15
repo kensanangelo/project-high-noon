@@ -1,11 +1,18 @@
 extends Node
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func _unhandled_input(event) -> void:
+	var player_string: String = "player_1"
+	match owner.player:
+		Enums.PLAYERS.PLAYER_1:
+			player_string = "player_1"
+		Enums.PLAYERS.PLAYER_2:
+			player_string = "player_2"
+		_:
+			printerr('Incorrect player assigned')
 
+	if event.is_action_pressed(str(player_string, "_shoot")):
+		print(str(player_string, " shoot pressed"))
+	elif event.is_action_pressed(str(player_string, "_step")):
+		print(str(player_string, " step pressed"))
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
