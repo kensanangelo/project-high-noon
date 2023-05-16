@@ -11,12 +11,9 @@ func _unhandled_input(event) -> void:
 		Enums.PLAYERS.PLAYER_2:
 			player_string = "player_2"
 		_:
-			printerr('Incorrect player assigned')
+			printerr("Incorrect player assigned")
 
 	if event.is_action_pressed(str(player_string, "_shoot")):
-		print(str(player_string, " shoot pressed"))
 		player_shoots.emit()
 	elif event.is_action_pressed(str(player_string, "_step")):
-		print(str(player_string, " step pressed"))
 		player_steps.emit()
-

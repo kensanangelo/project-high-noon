@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/battle_ui.gd" id="1_p4ogk"]
 
-[node name="BattleUI" type="Control" node_paths=PackedStringArray("player_1_bullet_count_label", "player_2_bullet_count_label", "player_1_steps", "player_2_steps")]
+[node name="BattleUI" type="Control" node_paths=PackedStringArray("player_1_bullet_count_label", "player_2_bullet_count_label", "player_1_steps", "player_2_steps", "fire_label")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -12,6 +12,7 @@ player_1_bullet_count_label = NodePath("MarginContainer/VBoxContainer/HBoxContai
 player_2_bullet_count_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Player2Bullets")
 player_1_steps = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Steps/Player1")
 player_2_steps = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Steps/Player2")
+fire_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Fire")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -71,7 +72,7 @@ layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/MarginContainer"]
+[node name="Steps" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/MarginContainer"]
 layout_mode = 2
 text = "STEPS"
 
@@ -103,3 +104,15 @@ text = "5"
 [node name="Player2Bullets" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Bullets: 6"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Fire" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+visible = false
+modulate = Color(1, 0.341176, 0.341176, 1)
+layout_mode = 2
+text = "FIRE!"
+horizontal_alignment = 1
+vertical_alignment = 1

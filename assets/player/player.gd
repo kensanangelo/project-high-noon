@@ -54,7 +54,7 @@ func _on_player_steps():
 		return
 
 	steps_taken += 1
-	SignalBus.update_player_steps.emit(player, steps_taken)
+	SignalBus.player_stepped.emit(player, steps_taken)
 
 	animator.start_walking()
 	var new_x = self.position.x + movement_step
@@ -66,6 +66,6 @@ func _on_player_shoots():
 		return
 
 	bullets_left -= 1
-	SignalBus.update_bullet_count.emit(player, bullets_left)
+	SignalBus.player_shot.emit(player, bullets_left)
 	animator.play_shooting()
 	has_shot = true

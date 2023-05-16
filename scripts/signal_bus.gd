@@ -1,4 +1,5 @@
 extends Node
 
-signal update_player_steps(player: Enums.PLAYERS, count: int)
-signal update_bullet_count(player: Enums.PLAYERS, count: int)
+signal player_stepped(player: Enums.PLAYERS, count: int)
+signal player_shot(player: Enums.PLAYERS, new_count: int)
+signal players_ready_to_shoot

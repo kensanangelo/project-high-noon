@@ -4,6 +4,7 @@ extends Control
 @export var player_2_bullet_count_label: Label
 @export var player_1_steps: HBoxContainer
 @export var player_2_steps: HBoxContainer
+@export var fire_label: Label
 
 var player_1_labels: Dictionary = {}
 var player_2_labels: Dictionary = {}
@@ -14,6 +15,7 @@ func _ready():
 	assert(player_2_bullet_count_label != null, "Player2BulletCount is not assigned")
 	assert(player_1_steps != null, "Player1Steps is not assigned")
 	assert(player_2_steps != null, "Player2Steps is not assigned")
+	assert(fire_label != null, "FireLabel is not assigned")
 
 	player_1_labels = {
 		"bullet_count" = player_1_bullet_count_label,
@@ -25,8 +27,9 @@ func _ready():
 		"steps" = player_2_steps
 	}
 
-	SignalBus.update_player_steps.connect(update_player_steps)
-	SignalBus.update_bullet_count.connect(update_bullet_count)
+	SignalBus.player_stepped.connect(update_player_steps)
+	SignalBus.player_shot.connect(update_bullet_count)
+	SignalBus.players_ready_to_shoot.connect(show_ready_to_shoot)
 
 func get_correct_player_labels(player: Enums.PLAYERS):
 	if player == Enums.PLAYERS.PLAYER_2:
@@ -34,7 +37,8 @@ func get_correct_player_labels(player: Enums.PLAYERS):
 	else:
 		return player_1_labels
 	
-
+func show_ready_to_shoot():
+	fire_label.visible = true
 
 func update_bullet_count(player: Enums.PLAYERS, new_count: int):
 	var label_obj = get_correct_player_labels(player)
