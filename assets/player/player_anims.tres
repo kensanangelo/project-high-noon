@@ -278,7 +278,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7sq6o")
 }],
-"loop": true,
+"loop": false,
 "name": &"shooting_left",
 "speed": 8.0
 }, {
@@ -301,7 +301,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bpiql")
 }],
-"loop": true,
+"loop": false,
 "name": &"shooting_right",
 "speed": 8.0
 }, {

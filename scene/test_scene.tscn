@@ -4,4 +4,11 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_cq5ni")]
+[node name="Player1" parent="." instance=ExtResource("1_cq5ni")]
+position = Vector2(-33, -25)
+player = 0
+
+[node name="Player2" parent="." instance=ExtResource("1_cq5ni")]
+position = Vector2(-13, -25)
+
+[node name="Camera2D" type="Camera2D" parent="."]
