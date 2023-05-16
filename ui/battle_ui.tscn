@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/battle_ui.gd" id="1_p4ogk"]
 
-[node name="BattleUI" type="Control" node_paths=PackedStringArray("player_1_bullet_count_label", "player_2_bullet_count_label")]
+[node name="BattleUI" type="Control" node_paths=PackedStringArray("player_1_bullet_count_label", "player_2_bullet_count_label", "player_1_steps", "player_2_steps")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -10,6 +10,8 @@ offset_bottom = 40.0
 script = ExtResource("1_p4ogk")
 player_1_bullet_count_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Player1Bullets")
 player_2_bullet_count_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Player2Bullets")
+player_1_steps = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Steps/Player1")
+player_2_steps = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Steps/Player2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -33,9 +35,70 @@ alignment = 1
 layout_mode = 2
 text = "Bullets: 6"
 
-[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Steps" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 1
+
+[node name="Player1" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps"]
+layout_mode = 2
+alignment = 2
+
+[node name="5" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player1"]
+layout_mode = 2
+text = "5"
+
+[node name="4" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player1"]
+layout_mode = 2
+text = "4
+"
+
+[node name="3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player1"]
+layout_mode = 2
+text = "3"
+
+[node name="2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player1"]
+layout_mode = 2
+text = "2
+"
+
+[node name="1" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player1"]
+layout_mode = 2
+text = "1"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/MarginContainer"]
+layout_mode = 2
+text = "STEPS"
+
+[node name="Player2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps"]
+layout_mode = 2
+
+[node name="1" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player2"]
+layout_mode = 2
+text = "1"
+
+[node name="2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player2"]
+layout_mode = 2
+text = "2
+"
+
+[node name="3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player2"]
+layout_mode = 2
+text = "3"
+
+[node name="4" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player2"]
+layout_mode = 2
+text = "4
+"
+
+[node name="5" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player2"]
+layout_mode = 2
+text = "5"
 
 [node name="Player2Bullets" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

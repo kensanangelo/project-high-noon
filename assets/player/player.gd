@@ -13,6 +13,7 @@ extends CharacterBody2D
 @export var bullets_left := 6
 
 var target: Vector2 = Vector2.ZERO
+var steps_taken: int = 0
 var has_shot: bool = false
 
 
@@ -51,6 +52,9 @@ func _on_player_steps():
 
 	if target != Vector2.ZERO:
 		return
+
+	steps_taken += 1
+	SignalBus.update_player_steps.emit(player, steps_taken)
 
 	animator.start_walking()
 	var new_x = self.position.x + movement_step
