@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bm6vqdh6oik5c"]
+[gd_scene load_steps=3 format=3 uid="uid://bm6vqdh6oik5c"]
 
 [ext_resource type="PackedScene" uid="uid://s5efehwve6ek" path="res://assets/player/player.tscn" id="1_cq5ni"]
+[ext_resource type="PackedScene" uid="uid://dimwgid5ew0fj" path="res://ui/battle_ui.tscn" id="2_xj3tk"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Battle" type="Node2D"]
 
 [node name="Player1" parent="." instance=ExtResource("1_cq5ni")]
 position = Vector2(-33, -25)
@@ -12,3 +13,5 @@ player = 0
 position = Vector2(-13, -25)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="BattleUI" parent="." instance=ExtResource("2_xj3tk")]

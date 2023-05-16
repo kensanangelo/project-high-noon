@@ -39,6 +39,7 @@ func stop_walking():
 	
 func play_shooting():
 	var anim_name: String = anims['shooting']
+	self.stop()
 	self.play(anim_name)
 	
 func _on_anim_finished():

@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://dimwgid5ew0fj"]
+
+[ext_resource type="Script" path="res://ui/battle_ui.gd" id="1_p4ogk"]
+
+[node name="BattleUI" type="Control" node_paths=PackedStringArray("player_1_bullet_count_label", "player_2_bullet_count_label")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_p4ogk")
+player_1_bullet_count_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Player1Bullets")
+player_2_bullet_count_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Player2Bullets")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Player1Bullets" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Bullets: 6"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Player2Bullets" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Bullets: 6"
