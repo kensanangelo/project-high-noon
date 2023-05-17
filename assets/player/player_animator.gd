@@ -1,5 +1,6 @@
-extends AnimatedSprite2D
 class_name PlayerAnimator
+extends AnimatedSprite2D
+
 var facing_dir := 'left'
 
 var anims: Dictionary = {
@@ -11,7 +12,7 @@ var anims: Dictionary = {
 }
 
 func _ready():
-	if(owner.player == Enums.PLAYERS.PLAYER_2):
+	if(owner.player == Enums.Players.PLAYER_2):
 		facing_dir = 'right'
 		
 	var reverse_dir = 'left' if facing_dir == 'right' else 'right'
@@ -29,6 +30,9 @@ func _ready():
 func go_idle(reverse: bool = false):
 	var anim_name: String = anims['idle_reverse'] if reverse else anims['idle']
 	self.play(anim_name)
+
+func turn_around():
+	go_idle(true)
 
 func start_walking():
 	var anim_name: String = anims['walking']

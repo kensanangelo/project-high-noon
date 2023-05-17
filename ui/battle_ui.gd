@@ -31,8 +31,8 @@ func _ready():
 	SignalBus.player_shot.connect(update_bullet_count)
 	SignalBus.players_ready_to_shoot.connect(show_ready_to_shoot)
 
-func get_correct_player_labels(player: Enums.PLAYERS):
-	if player == Enums.PLAYERS.PLAYER_2:
+func get_correct_player_labels(player: Enums.Players):
+	if player == Enums.Players.PLAYER_2:
 		return player_2_labels
 	else:
 		return player_1_labels
@@ -40,11 +40,11 @@ func get_correct_player_labels(player: Enums.PLAYERS):
 func show_ready_to_shoot():
 	fire_label.visible = true
 
-func update_bullet_count(player: Enums.PLAYERS, new_count: int):
+func update_bullet_count(player: Enums.Players, new_count: int):
 	var label_obj = get_correct_player_labels(player)
 	label_obj['bullet_count'].text = str("Bullets: ", new_count)
 
-func update_player_steps(player: Enums.PLAYERS, current_step: int):
+func update_player_steps(player: Enums.Players, current_step: int):
 	var label_obj = get_correct_player_labels(player)
 	var steps_group = label_obj['steps']
 
@@ -54,7 +54,7 @@ func update_player_steps(player: Enums.PLAYERS, current_step: int):
 
 	var current_index = current_step - 1
 
-	if player == Enums.PLAYERS.PLAYER_1:
+	if player == Enums.Players.PLAYER_1:
 		current_index = (steps_group.get_child_count() - 1) - (current_step - 1)
 
 	var label_to_update = steps_group.get_child(current_index)

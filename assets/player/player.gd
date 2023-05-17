@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
-@export var player: Enums.PLAYERS
+@export var player: Enums.Players
 @export var player_controls: Node
 @export var animator: PlayerAnimator
+@export var arrow: Sprite2D
 
 ## How quickly the character moves
 @export var speed := 100
@@ -14,13 +15,14 @@ extends CharacterBody2D
 
 var target: Vector2 = Vector2.ZERO
 var steps_taken: int = 0
+var steps_limit: int = 5
 var has_shot: bool = false
 
 
 func _ready():
 	# If player 1, we invert the movement
 	# so the char goes left, not right
-	if player == Enums.PLAYERS.PLAYER_1:
+	if player == Enums.Players.PLAYER_1:
 		movement_step *= -1
 
 	if player_controls:
@@ -30,6 +32,7 @@ func _ready():
 		printerr("Player controls not connected")
 
 	assert(animator, "Animator not connected")
+	assert(arrow, "Arrow not connected")
 
 
 func _physics_process(_delta):
@@ -47,6 +50,10 @@ func _physics_process(_delta):
 
 
 func _on_player_steps():
+	if steps_taken >= steps_limit:
+		animator.turn_around()
+		return
+
 	if has_shot:
 		return
 
@@ -64,6 +71,8 @@ func _on_player_steps():
 func _on_player_shoots():
 	if bullets_left <= 0:
 		return
+
+	arrow.show_arrow()
 
 	bullets_left -= 1
 	SignalBus.player_shot.emit(player, bullets_left)

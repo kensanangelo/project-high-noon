@@ -1,28 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://s5efehwve6ek"]
+[gd_scene load_steps=8 format=3 uid="uid://s5efehwve6ek"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_hnimx"]
 [ext_resource type="SpriteFrames" uid="uid://b7d3swjlkfy70" path="res://assets/player/player_anims.tres" id="1_mo6py"]
 [ext_resource type="Script" path="res://assets/player/player_controls.gd" id="3_2vdyo"]
 [ext_resource type="Script" path="res://assets/player/player_animator.gd" id="3_3n3x7"]
+[ext_resource type="Texture2D" uid="uid://dc4ete8w8qd46" path="res://assets/arrow/arrow.png" id="5_j8f41"]
+[ext_resource type="Script" path="res://assets/arrow/player_arrow.gd" id="6_lphht"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_brfgm"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_controls", "animator")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_controls", "animator", "arrow")]
 script = ExtResource("1_hnimx")
 player = 1
 player_controls = NodePath("PlayerControls")
 animator = NodePath("AnimatedSprite")
+arrow = NodePath("Arrow")
 movement_step = 30
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(23, 25)
+position = Vector2(-1, 3)
 shape = SubResource("CapsuleShape2D_brfgm")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_mo6py")
 animation = &"walking_right"
-centered = false
 script = ExtResource("3_3n3x7")
 
 [node name="PlayerControls" type="Node" parent="."]
 script = ExtResource("3_2vdyo")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+position = Vector2(9, 3)
+rotation = 1.5708
+texture = ExtResource("5_j8f41")
+offset = Vector2(0.482849, -7.96478)
+script = ExtResource("6_lphht")

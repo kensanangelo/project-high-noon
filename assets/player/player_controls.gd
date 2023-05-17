@@ -6,9 +6,9 @@ signal player_shoots
 func _unhandled_input(event) -> void:
 	var player_string: String = "player_1"
 	match owner.player:
-		Enums.PLAYERS.PLAYER_1:
+		Enums.Players.PLAYER_1:
 			player_string = "player_1"
-		Enums.PLAYERS.PLAYER_2:
+		Enums.Players.PLAYER_2:
 			player_string = "player_2"
 		_:
 			printerr("Incorrect player assigned")

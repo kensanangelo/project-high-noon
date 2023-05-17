@@ -17,4 +17,4 @@ func _ready():
 		Enums.BATTLERESULTS.TIE:
 			text = "You tied!"
 
-	label.text = str("Game Over: " + text)
+	label.text = text
