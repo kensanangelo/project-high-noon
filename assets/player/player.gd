@@ -27,6 +27,7 @@ func _ready() -> void:
 
 	if player_controls:
 		player_controls.player_steps.connect(_on_player_steps)
+		player_controls.player_aims.connect(_on_player_aims)
 		player_controls.player_shoots.connect(_on_player_shoots)
 	else:
 		printerr("Player controls not connected")
@@ -64,17 +65,25 @@ func _on_player_steps() -> void:
 	SignalBus.player_stepped.emit(player, steps_taken)
 
 	animator.start_walking()
-	var new_x = self.position.x + movement_step
+	var new_x := self.position.x + movement_step
 	target = Vector2(new_x, self.position.y)
 
 
-func _on_player_shoots() -> void:
+func _on_player_aims() -> void:
 	if bullets_left <= 0:
 		return
 
+	animator.turn_around()
 	arrow.show_arrow()
 
+
+func _on_player_shoots() -> void:
+	var shot_angle: float = arrow.stop_arrow()
+
+	if bullets_left <= 0:
+		return
+
 	bullets_left -= 1
-	SignalBus.player_shot.emit(player, bullets_left)
 	animator.play_shooting()
+	SignalBus.player_shot.emit(player, bullets_left)
 	has_shot = true

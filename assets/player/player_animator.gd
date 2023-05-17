@@ -1,7 +1,7 @@
 class_name PlayerAnimator
 extends AnimatedSprite2D
 
-var facing_dir: Enums.Directions = Enums.Directions.LEFT
+var facing_dir: String = Enums.Directions.LEFT
 
 var anims: Dictionary = {
 	"idle" = "",
@@ -15,7 +15,7 @@ func _ready() -> void:
 	if(owner.player == Enums.Players.PLAYER_2):
 		facing_dir = Enums.Directions.RIGHT
 		
-	var reverse_dir = (Enums.Directions.LEFT 
+	var reverse_dir: String = (Enums.Directions.LEFT 
 			if facing_dir == Enums.Directions.RIGHT 
 			else Enums.Directions.RIGHT)
 		

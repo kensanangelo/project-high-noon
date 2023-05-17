@@ -4,7 +4,7 @@ var game_over_screen_packed: PackedScene = preload("res://scenes/game_over_scene
 
 
 func end_battle(winner: Enums.BattleResults) -> void:
-	var game_over_screen = game_over_screen_packed.instantiate()
+	var game_over_screen: Node = game_over_screen_packed.instantiate()
 	game_over_screen.state = winner
 
 	get_node("/root/Battle").queue_free()
