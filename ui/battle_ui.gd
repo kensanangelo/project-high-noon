@@ -10,7 +10,7 @@ var player_1_labels: Dictionary = {}
 var player_2_labels: Dictionary = {}
 
 
-func _ready():
+func _ready() -> void:
 	assert(player_1_bullet_count_label != null, "Player1BulletCount is not assigned")
 	assert(player_2_bullet_count_label != null, "Player2BulletCount is not assigned")
 	assert(player_1_steps != null, "Player1Steps is not assigned")
@@ -31,31 +31,31 @@ func _ready():
 	SignalBus.player_shot.connect(update_bullet_count)
 	SignalBus.players_ready_to_shoot.connect(show_ready_to_shoot)
 
-func get_correct_player_labels(player: Enums.Players):
+func get_correct_player_labels(player: Enums.Players) -> Dictionary:
 	if player == Enums.Players.PLAYER_2:
 		return player_2_labels
 	else:
 		return player_1_labels
 	
-func show_ready_to_shoot():
+func show_ready_to_shoot() -> void:
 	fire_label.visible = true
 
-func update_bullet_count(player: Enums.Players, new_count: int):
-	var label_obj = get_correct_player_labels(player)
+func update_bullet_count(player: Enums.Players, new_count: int) -> void:
+	var label_obj := get_correct_player_labels(player)
 	label_obj['bullet_count'].text = str("Bullets: ", new_count)
 
-func update_player_steps(player: Enums.Players, current_step: int):
-	var label_obj = get_correct_player_labels(player)
-	var steps_group = label_obj['steps']
+func update_player_steps(player: Enums.Players, current_step: int) -> void:
+	var label_obj := get_correct_player_labels(player)
+	var steps_group: Node = label_obj['steps']
 
 	# Prevent a situation where the steps go over the max and error
 	if(steps_group.get_child_count() < current_step):
 		return
 
-	var current_index = current_step - 1
+	var current_index := current_step - 1
 
 	if player == Enums.Players.PLAYER_1:
 		current_index = (steps_group.get_child_count() - 1) - (current_step - 1)
 
-	var label_to_update = steps_group.get_child(current_index)
+	var label_to_update: Label= steps_group.get_child(current_index)
 	label_to_update.add_theme_color_override("font_color", Color(0, 0, 0, 1))

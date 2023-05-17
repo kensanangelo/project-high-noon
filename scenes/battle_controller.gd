@@ -17,7 +17,7 @@ func _ready() -> void:
 	SignalBus.player_shot.connect(handle_shooting_rules)
 	SignalBus.player_stepped.connect(handle_step)
 	
-func handle_step(player: Enums.Players, count: int):
+func handle_step(player: Enums.Players, count: int) -> void:
 	check_max_steps(player, count)
 	notify_if_players_ready_to_shoot()
 
@@ -41,10 +41,10 @@ func handle_shooting_rules(player: Enums.Players, count: int) -> void:
 ## If a player shoots before both are at max steps, they lose
 func check_preemptive_attack(shooter: Enums.Players) -> void:
 	if(!player_1.hit_max_steps || !player_2.hit_max_steps):
-		var winner := Enums.BATTLERESULTS.PLAYER_1_WINS
+		var winner: Enums.BattleResults = Enums.BattleResults.PLAYER_1_WINS
 
 		if(shooter == Enums.Players.PLAYER_1):
-			winner = Enums.BATTLERESULTS.PLAYER_2_WINS
+			winner = Enums.BattleResults.PLAYER_2_WINS
 
 		SceneManager.end_battle(winner)
 		return
@@ -58,9 +58,9 @@ func check_out_of_bullets(player: Enums.Players, count: int) -> void:
 
 func check_tie() -> void:
 	if player_1.out_of_bullets and player_2.out_of_bullets:
-		SceneManager.end_battle(Enums.BATTLERESULTS.TIE)
+		SceneManager.end_battle(Enums.BattleResults.TIE)
 		
-func get_opposite_player(player: Enums.Players):
+func get_opposite_player(player: Enums.Players) -> Enums.Players:
 	if player == Enums.Players.PLAYER_1:
 		return Enums.Players.PLAYER_2
 	else:

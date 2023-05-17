@@ -3,7 +3,7 @@ extends Node
 var game_over_screen_packed: PackedScene = preload("res://scenes/game_over_scene.tscn")
 
 
-func end_battle(winner: Enums.BATTLERESULTS):
+func end_battle(winner: Enums.BattleResults) -> void:
 	var game_over_screen = game_over_screen_packed.instantiate()
 	game_over_screen.state = winner
 

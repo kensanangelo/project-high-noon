@@ -5,6 +5,7 @@ signal player_shoots
 
 func _unhandled_input(event) -> void:
 	var player_string: String = "player_1"
+
 	match owner.player:
 		Enums.Players.PLAYER_1:
 			player_string = "player_1"

@@ -19,7 +19,7 @@ var steps_limit: int = 5
 var has_shot: bool = false
 
 
-func _ready():
+func _ready() -> void:
 	# If player 1, we invert the movement
 	# so the char goes left, not right
 	if player == Enums.Players.PLAYER_1:
@@ -35,7 +35,7 @@ func _ready():
 	assert(arrow, "Arrow not connected")
 
 
-func _physics_process(_delta):
+func _physics_process(_delta) -> void:
 	# if close to target, clear target
 	if self.position.distance_to(target) < 10:
 		target = Vector2.ZERO
@@ -49,7 +49,7 @@ func _physics_process(_delta):
 	move_and_slide()
 
 
-func _on_player_steps():
+func _on_player_steps() -> void:
 	if steps_taken >= steps_limit:
 		animator.turn_around()
 		return
@@ -68,7 +68,7 @@ func _on_player_steps():
 	target = Vector2(new_x, self.position.y)
 
 
-func _on_player_shoots():
+func _on_player_shoots() -> void:
 	if bullets_left <= 0:
 		return
 
