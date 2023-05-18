@@ -4,8 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://crke12c1y67h8" path="res://assets/player/player.tscn" id="2_amspw"]
 [ext_resource type="PackedScene" uid="uid://dimwgid5ew0fj" path="res://ui/battle_ui.tscn" id="3_rcp85"]
 
-[node name="Battle" type="Node2D"]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("explosions_container", "bullet_container")]
 script = ExtResource("1_0nexq")
+explosions_container = NodePath("Effects/Explosions")
+bullet_container = NodePath("Effects/Bullets")
 
 [node name="Players" type="Node" parent="."]
 
@@ -21,3 +23,9 @@ metadata/_edit_lock_ = true
 
 [node name="BattleUI" parent="." instance=ExtResource("3_rcp85")]
 metadata/_edit_lock_ = true
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="Bullets" type="Node" parent="Effects"]
+
+[node name="Explosions" type="Node" parent="Effects"]

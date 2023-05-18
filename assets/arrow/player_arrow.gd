@@ -38,5 +38,6 @@ func start_arrow() -> void:
 func stop_arrow() -> void:
 	self.visible = false
 
+
 func get_angle() -> float:
 	return self.rotation_degrees

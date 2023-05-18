@@ -1,7 +1,12 @@
 extends Node2D
 
+@export var explosions_container: Node
+@export var bullet_container: Node
 ## How many steps the players take before shooting
 @export var total_steps := 5
+
+var bullet_class = preload("res://assets/bullet/bullet.tscn")
+var explosion_class = preload("res://assets/explosion/explosion.tscn")
 
 var player_1: Dictionary = {
 	"hit_max_steps" = false,
@@ -13,10 +18,19 @@ var player_2: Dictionary = {
 	"out_of_bullets" = false
 }
 
+var bullet_counter: int = 0
+var bullets_have_collided: Array[String] = []
+
 func _ready() -> void:
+	assert(explosions_container != null, "Explosions container is null")
+	assert(bullet_container != null, "Bullet container is null")
+
 	SignalBus.player_shot.connect(handle_shooting_rules)
 	SignalBus.player_stepped.connect(handle_step)
 	SignalBus.player_died.connect(handle_player_died)
+	SignalBus.bullet_fired.connect(handle_bullet_fired)
+	SignalBus.bullets_collided.connect(handle_bullets_collided)
+	SignalBus.bullet_ends.connect(handle_bullet_ends)
 	
 func handle_step(player: Enums.Players, count: int) -> void:
 	check_max_steps(player, count)
@@ -37,12 +51,36 @@ func handle_shooting_rules(player: Enums.Players, count: int) -> void:
 	check_preemptive_attack(player)
 	check_out_of_bullets(player, count)
 
-	check_tie()
-
 func handle_player_died(player: Enums.Players) -> void:
 	var winner := get_opposite_player(player)
 	var result := generate_result_from_winner(winner)
 	end_game(result)
+
+func handle_bullet_fired(pos: Vector2, angle: float, from: Enums.Players) -> void:
+	var bullet: Bullet = bullet_class.instantiate()
+	# Create a unique bullet name
+	bullet.name = "Bullet" + str(bullet_counter)
+	bullet.setup(pos, angle, from)
+	bullet_container.add_child(bullet)
+
+	bullet_counter += 1
+
+func handle_bullets_collided(pos: Vector2, bullet1: String, bullet2: String) -> void:
+	# If the bullets have already collided, don't render another explosion
+	if bullets_have_collided.has(bullet1) || bullets_have_collided.has(bullet2):
+		return
+	
+	# Add to our list of bullets
+	bullets_have_collided.append(bullet1)
+	bullets_have_collided.append(bullet2)
+
+	var explosion: AnimatedSprite2D = explosion_class.instantiate()
+	explosion.global_position = pos
+	explosions_container.add_child(explosion)
+
+func handle_bullet_ends() -> void:
+	if bullet_container.get_child_count() == 0:
+		check_tie()
 
 ## If a player shoots before both are at max steps, they lose
 func check_preemptive_attack(shooter: Enums.Players) -> void:

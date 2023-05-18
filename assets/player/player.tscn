@@ -31,7 +31,8 @@ script = ExtResource("3_3n3x7")
 script = ExtResource("3_2vdyo")
 
 [node name="Arrow" type="Sprite2D" parent="."]
-position = Vector2(9, 3)
+visible = false
+position = Vector2(9, 4)
 rotation = 1.5708
 texture = ExtResource("5_g4k4s")
 offset = Vector2(0.482849, -7.96478)

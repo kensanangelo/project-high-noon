@@ -1,10 +1,13 @@
 class_name Bullet
 extends CharacterBody2D
 
-var direction = 0
+## How fast the bullet travels
+@export var speed := 100
+## How long the bullet is alive before it destroys itself
+@export var lifetime := 1.0
 
-var speed = 100
 var parent_player: Enums.Players
+var direction := 0.0
 
 
 func setup(_position, _direction, parent: Enums.Players):
@@ -24,6 +27,15 @@ func _physics_process(delta):
 		# We do this because the bullet spawns inside the creator's hitbox
 		if collider is Player && collider.name != Enums.PlayerNodeNames[parent_player]:
 			collider.gets_hit()
-			queue_free()
+			die()
+
+		if collider is Bullet:
+			SignalBus.bullets_collided.emit(collision.get_position(), self.name, collider.name)
+			die()
+
+
+func die() -> void:
+	SignalBus.bullet_ends.emit()
+	queue_free()
 
 # TODO Add a timer to destroy the bullet after a certain amount of time

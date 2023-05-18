@@ -13,8 +13,6 @@ extends CharacterBody2D
 ## How many bullets the player starts with
 @export var bullets_left := 6
 
-var bullet_class = preload("res://assets/bullet/bullet.tscn")
-
 var target: Vector2 = Vector2.ZERO
 var steps_taken: int = 0
 var steps_limit: int = 5
@@ -83,9 +81,7 @@ func _on_player_shoots() -> void:
 	if bullets_left <= 0:
 		return
 
-	var bullet: Bullet = bullet_class.instantiate()
-	bullet.setup(calculate_bullet_pos(), calculate_shot_angle(), player)
-	get_tree().get_root().add_child(bullet)
+	SignalBus.bullet_fired.emit(calculate_bullet_pos(), calculate_shot_angle(), player)
 
 	bullets_left -= 1
 	animator.play_shooting()
@@ -128,10 +124,12 @@ func disable_player() -> void:
 
 
 func calculate_bullet_pos() -> Vector2:
-	if player == Enums.Players.PLAYER_1:
-		return self.global_position + Vector2(10.0, 4)
+	var new_pos := self.global_position + Vector2(0, 4)
 
-	return self.global_position - Vector2(10.0, 4)
+	if player == Enums.Players.PLAYER_1:
+		return new_pos + Vector2(10.0, 0)
+
+	return new_pos - Vector2(10.0, 0)
 
 
 func calculate_shot_angle() -> float:
