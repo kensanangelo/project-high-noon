@@ -10,6 +10,14 @@ var parent_player: Enums.Players
 var direction := 0.0
 
 
+func _ready() -> void:
+	var timer = Timer.new()
+	timer.wait_time = lifetime
+	timer.autostart = true
+	add_child(timer)
+	timer.timeout.connect(die)
+
+
 func setup(_position, _direction, parent: Enums.Players):
 	parent_player = parent
 	rotation_degrees = _direction
@@ -37,5 +45,3 @@ func _physics_process(delta):
 func die() -> void:
 	SignalBus.bullet_ends.emit()
 	queue_free()
-
-# TODO Add a timer to destroy the bullet after a certain amount of time

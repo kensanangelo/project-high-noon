@@ -79,7 +79,8 @@ func handle_bullets_collided(pos: Vector2, bullet1: String, bullet2: String) -> 
 	explosions_container.add_child(explosion)
 
 func handle_bullet_ends() -> void:
-	if bullet_container.get_child_count() == 0:
+	# This could happen before a queue_free, so there might be 1 or 0 children even though it's empty
+	if bullet_container.get_child_count() <= 1:
 		check_tie()
 
 ## If a player shoots before both are at max steps, they lose
