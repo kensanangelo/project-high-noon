@@ -12,6 +12,8 @@ position = Vector2(40, 3)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_lb4ma")
+speed = 250
+lifetime = 2.0
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_7xbem")

@@ -4,6 +4,7 @@ extends Node2D
 @export var bullet_container: Node
 ## How many steps the players take before shooting
 @export var total_steps := 5
+@export var game_over_delay := 2.5
 
 var bullet_class = preload("res://assets/bullet/bullet.tscn")
 var explosion_class = preload("res://assets/explosion/explosion.tscn")
@@ -116,5 +117,13 @@ func generate_result_from_winner(winner: Enums.Players) -> Enums.BattleResults:
 
 func end_game(results: Enums.BattleResults) -> void:
 	SignalBus.players_disabled.emit()
+
+	var timer = Timer.new()
+	timer.wait_time = game_over_delay
+	timer.autostart = true
+	add_child(timer)
+
+	await timer.timeout
+
 	SceneManager.end_battle(results)
 	
