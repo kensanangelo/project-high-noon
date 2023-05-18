@@ -6,7 +6,7 @@ extends Sprite2D
 @export var rotation_speed := 5.0
 ## The current time of the arrow
 var time := 0.0
-## The starting rotation of the arrow
+## The base rotation of the arrow
 var default_rotation := 90.0
 
 
@@ -32,6 +32,11 @@ func _physics_process(delta):
 
 
 func start_arrow() -> void:
+	randomize()
+	# Set the arrow to a random point in it's oscillation
+	# whenever it starts
+	time = randf_range(0, 5)
+
 	self.visible = true
 
 

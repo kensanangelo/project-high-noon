@@ -20,9 +20,9 @@ func _ready() -> void:
 
 func setup(_position, _direction, parent: Enums.Players):
 	parent_player = parent
-	rotation_degrees = _direction
-	position = _position
-	velocity = Vector2(speed, 0).rotated(rotation)
+	self.rotation_degrees = _direction
+	self.position = _position
+	self.velocity = Vector2(speed, 0).rotated(rotation)
 
 
 func _physics_process(delta):
