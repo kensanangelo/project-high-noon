@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dimwgid5ew0fj"]
+[gd_scene load_steps=3 format=3 uid="uid://dimwgid5ew0fj"]
 
+[ext_resource type="Theme" uid="uid://maugmt213e1w" path="res://ui/theme/main_theme.tres" id="1_egqla"]
 [ext_resource type="Script" path="res://ui/battle_ui.gd" id="1_p4ogk"]
 
 [node name="BattleUI" type="Control" node_paths=PackedStringArray("player_1_bullet_count_label", "player_2_bullet_count_label", "player_1_steps", "player_2_steps", "fire_label")]
@@ -7,6 +8,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("1_egqla")
 script = ExtResource("1_p4ogk")
 player_1_bullet_count_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Player1Bullets")
 player_2_bullet_count_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Player2Bullets")
@@ -34,7 +36,9 @@ alignment = 1
 
 [node name="Player1Bullets" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Bullets: 6"
+theme = ExtResource("1_egqla")
+theme_type_variation = &"HeaderSmall"
+text = "BULLETS: 6"
 
 [node name="Steps" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -103,7 +107,7 @@ text = "5"
 
 [node name="Player2Bullets" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Bullets: 6"
+text = "BULLETS: 6"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://maugmt213e1w"]
+
+[ext_resource type="FontFile" uid="uid://bu8l4ou1qj2m2" path="res://ui/font/body-font.ttf" id="1_vyxrg"]
+
+[resource]
+default_font = ExtResource("1_vyxrg")
+default_font_size = 16
+/font_sizes/Large = 18
+/font_sizes/Medium = 16
+/font_sizes/Small = 14
+/font_sizes/XLarge = 22
+/fonts/Body = ExtResource("1_vyxrg")
