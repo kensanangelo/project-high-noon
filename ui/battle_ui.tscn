@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dimwgid5ew0fj"]
+[gd_scene load_steps=5 format=3 uid="uid://dimwgid5ew0fj"]
 
 [ext_resource type="Theme" uid="uid://maugmt213e1w" path="res://ui/theme/main_theme.tres" id="1_egqla"]
 [ext_resource type="Script" path="res://ui/battle_ui.gd" id="1_p4ogk"]
+[ext_resource type="LabelSettings" uid="uid://41hvhwqwdu3a" path="res://ui/theme/label_settings.tres" id="3_aoibg"]
+[ext_resource type="LabelSettings" uid="uid://b8imoowrj1wsd" path="res://ui/theme/large_label_settings.tres" id="4_676s0"]
 
 [node name="BattleUI" type="Control" node_paths=PackedStringArray("player_1_bullet_count_label", "player_2_bullet_count_label", "player_1_steps", "player_2_steps", "fire_label")]
+z_index = 100
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -39,6 +43,7 @@ layout_mode = 2
 theme = ExtResource("1_egqla")
 theme_type_variation = &"HeaderSmall"
 text = "BULLETS: 6"
+label_settings = ExtResource("3_aoibg")
 
 [node name="Steps" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -52,24 +57,29 @@ alignment = 2
 [node name="5" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player1"]
 layout_mode = 2
 text = "5"
+label_settings = ExtResource("3_aoibg")
 
 [node name="4" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player1"]
 layout_mode = 2
 text = "4
 "
+label_settings = ExtResource("3_aoibg")
 
 [node name="3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player1"]
 layout_mode = 2
 text = "3"
+label_settings = ExtResource("3_aoibg")
 
 [node name="2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player1"]
 layout_mode = 2
 text = "2
 "
+label_settings = ExtResource("3_aoibg")
 
 [node name="1" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player1"]
 layout_mode = 2
 text = "1"
+label_settings = ExtResource("3_aoibg")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps"]
 layout_mode = 2
@@ -78,7 +88,9 @@ theme_override_constants/margin_right = 10
 
 [node name="Steps" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/MarginContainer"]
 layout_mode = 2
+theme = ExtResource("1_egqla")
 text = "STEPS"
+label_settings = ExtResource("3_aoibg")
 
 [node name="Player2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps"]
 layout_mode = 2
@@ -86,28 +98,34 @@ layout_mode = 2
 [node name="1" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player2"]
 layout_mode = 2
 text = "1"
+label_settings = ExtResource("3_aoibg")
 
 [node name="2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player2"]
 layout_mode = 2
 text = "2
 "
+label_settings = ExtResource("3_aoibg")
 
 [node name="3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player2"]
 layout_mode = 2
 text = "3"
+label_settings = ExtResource("3_aoibg")
 
 [node name="4" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player2"]
 layout_mode = 2
 text = "4
 "
+label_settings = ExtResource("3_aoibg")
 
 [node name="5" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Steps/Player2"]
 layout_mode = 2
 text = "5"
+label_settings = ExtResource("3_aoibg")
 
 [node name="Player2Bullets" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "BULLETS: 6"
+label_settings = ExtResource("3_aoibg")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -117,6 +135,9 @@ alignment = 1
 visible = false
 modulate = Color(1, 0.341176, 0.341176, 1)
 layout_mode = 2
+theme = ExtResource("1_egqla")
+theme_type_variation = &"HeaderLarge"
 text = "FIRE!"
+label_settings = ExtResource("4_676s0")
 horizontal_alignment = 1
 vertical_alignment = 1

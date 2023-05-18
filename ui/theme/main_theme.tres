@@ -1,12 +1,17 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://maugmt213e1w"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://maugmt213e1w"]
 
 [ext_resource type="FontFile" uid="uid://bu8l4ou1qj2m2" path="res://ui/font/body-font.ttf" id="1_vyxrg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e3w7j"]
 
 [resource]
 default_font = ExtResource("1_vyxrg")
 default_font_size = 16
+/constants/Default = 0
 /font_sizes/Large = 18
 /font_sizes/Medium = 16
 /font_sizes/Small = 14
-/font_sizes/XLarge = 22
+/font_sizes/XLarge = 26
 /fonts/Body = ExtResource("1_vyxrg")
+/styles/Default = SubResource("StyleBoxEmpty_e3w7j")
+Label/font_sizes/font_size = 12

@@ -42,7 +42,7 @@ func show_ready_to_shoot() -> void:
 
 func update_bullet_count(player: Enums.Players, new_count: int) -> void:
 	var label_obj := get_correct_player_labels(player)
-	label_obj['bullet_count'].text = str("Bullets: ", new_count)
+	label_obj['bullet_count'].text = str("BULLETS: ", new_count)
 
 func update_player_steps(player: Enums.Players, current_step: int) -> void:
 	var label_obj := get_correct_player_labels(player)
@@ -58,4 +58,4 @@ func update_player_steps(player: Enums.Players, current_step: int) -> void:
 		current_index = (steps_group.get_child_count() - 1) - (current_step - 1)
 
 	var label_to_update: Label= steps_group.get_child(current_index)
-	label_to_update.add_theme_color_override("font_color", Color(0, 0, 0, 1))
+	label_to_update.modulate = Color(1, 1, 1, 0.2)
