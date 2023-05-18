@@ -23,9 +23,7 @@ func _ready() -> void:
 	anims['walking'] = str('walking_', facing_dir)
 	anims['idle_reverse'] = str('idle_', reverse_dir)
 	anims['shooting'] = str('shooting_', reverse_dir)
-	anims['dying'] = str('dying_', facing_dir)
-	
-	animation_finished.connect(_on_anim_finished)
+	anims['dying'] = str('dying')
 		
 	go_idle()
 		
@@ -47,6 +45,11 @@ func play_shooting():
 	var anim_name: String = anims['shooting']
 	self.stop()
 	self.play(anim_name)
-	
-func _on_anim_finished():
+	await self.animation_finished
 	go_idle(true)
+
+func play_dying():
+	var anim_name: String = anims['dying']
+	self.stop()
+	self.play(anim_name)
+

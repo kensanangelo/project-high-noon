@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc4ete8w8qd46"
-path="res://.godot/imported/arrow.png-8d6775f12b4ddf20fd552bd7805b91a5.ctex"
+uid="uid://by67aww2hriwv"
+path="res://.godot/imported/bullet.png-b028c1e215868d481889ef9093ec130f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/arrow/arrow.png"
-dest_files=["res://.godot/imported/arrow.png-8d6775f12b4ddf20fd552bd7805b91a5.ctex"]
+source_file="res://assets/bullet/art/bullet.png"
+dest_files=["res://.godot/imported/bullet.png-b028c1e215868d481889ef9093ec130f.ctex"]
 
 [params]
 

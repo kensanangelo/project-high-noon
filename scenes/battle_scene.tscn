@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://48rvxsfa1mji"]
 
 [ext_resource type="Script" path="res://scenes/battle_controller.gd" id="1_0nexq"]
-[ext_resource type="PackedScene" uid="uid://s5efehwve6ek" path="res://assets/player/player.tscn" id="2_amspw"]
+[ext_resource type="PackedScene" uid="uid://crke12c1y67h8" path="res://assets/player/player.tscn" id="2_amspw"]
 [ext_resource type="PackedScene" uid="uid://dimwgid5ew0fj" path="res://ui/battle_ui.tscn" id="3_rcp85"]
 
 [node name="Battle" type="Node2D"]

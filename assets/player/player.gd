@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 @export var player: Enums.Players
@@ -9,14 +10,16 @@ extends CharacterBody2D
 @export var speed := 100
 ## How far the character goes per step
 @export var movement_step := 100
-
 ## How many bullets the player starts with
 @export var bullets_left := 6
+
+var bullet_class = preload("res://assets/bullet/bullet.tscn")
 
 var target: Vector2 = Vector2.ZERO
 var steps_taken: int = 0
 var steps_limit: int = 5
 var has_shot: bool = false
+var is_disabled: bool = false
 
 
 func _ready() -> void:
@@ -25,12 +28,9 @@ func _ready() -> void:
 	if player == Enums.Players.PLAYER_1:
 		movement_step *= -1
 
-	if player_controls:
-		player_controls.player_steps.connect(_on_player_steps)
-		player_controls.player_aims.connect(_on_player_aims)
-		player_controls.player_shoots.connect(_on_player_shoots)
-	else:
-		printerr("Player controls not connected")
+	SignalBus.players_disabled.connect(disable_player)
+
+	enable_player()
 
 	assert(animator, "Animator not connected")
 	assert(arrow, "Arrow not connected")
@@ -74,16 +74,68 @@ func _on_player_aims() -> void:
 		return
 
 	animator.turn_around()
-	arrow.show_arrow()
+	arrow.start_arrow()
 
 
 func _on_player_shoots() -> void:
-	var shot_angle: float = arrow.stop_arrow()
+	arrow.stop_arrow()
 
 	if bullets_left <= 0:
 		return
+
+	var bullet: Bullet = bullet_class.instantiate()
+	bullet.setup(calculate_bullet_pos(), calculate_shot_angle(), player)
+	get_tree().get_root().add_child(bullet)
 
 	bullets_left -= 1
 	animator.play_shooting()
 	SignalBus.player_shot.emit(player, bullets_left)
 	has_shot = true
+
+
+func gets_hit() -> void:
+	if is_disabled:
+		return
+
+	SignalBus.player_died.emit(player)
+	animator.play_dying()
+
+
+func enable_player() -> void:
+	# sets disabled flag
+	is_disabled = false
+
+	# connects controls
+	if player_controls:
+		player_controls.player_steps.connect(_on_player_steps)
+		player_controls.player_aims.connect(_on_player_aims)
+		player_controls.player_shoots.connect(_on_player_shoots)
+	else:
+		printerr("Player controls not connected")
+
+
+func disable_player() -> void:
+	# sets disabled flag
+	is_disabled = true
+
+	# disabled controls
+	player_controls.player_steps.disconnect(_on_player_steps)
+	player_controls.player_aims.disconnect(_on_player_aims)
+	player_controls.player_shoots.disconnect(_on_player_shoots)
+
+	# cancels current movement
+	target = Vector2.ZERO
+
+
+func calculate_bullet_pos() -> Vector2:
+	if player == Enums.Players.PLAYER_1:
+		return self.global_position + Vector2(10.0, 4)
+
+	return self.global_position - Vector2(10.0, 4)
+
+
+func calculate_shot_angle() -> float:
+	if player == Enums.Players.PLAYER_1:
+		return arrow.get_angle() - 90.0
+
+	return arrow.get_angle() + 90.0

@@ -47,6 +47,11 @@ player_2_shoot={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Players"
+2d_physics/layer_2="Bullets"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

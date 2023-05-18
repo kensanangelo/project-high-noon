@@ -1,15 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://s5efehwve6ek"]
+[gd_scene load_steps=8 format=3 uid="uid://crke12c1y67h8"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_hnimx"]
 [ext_resource type="SpriteFrames" uid="uid://b7d3swjlkfy70" path="res://assets/player/player_anims.tres" id="1_mo6py"]
 [ext_resource type="Script" path="res://assets/player/player_controls.gd" id="3_2vdyo"]
 [ext_resource type="Script" path="res://assets/player/player_animator.gd" id="3_3n3x7"]
-[ext_resource type="Texture2D" uid="uid://dc4ete8w8qd46" path="res://assets/arrow/arrow.png" id="5_j8f41"]
+[ext_resource type="Texture2D" uid="uid://dc4ete8w8qd46" path="res://assets/arrow/art/arrow.png" id="5_g4k4s"]
 [ext_resource type="Script" path="res://assets/arrow/player_arrow.gd" id="6_lphht"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_brfgm"]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_controls", "animator", "arrow")]
+collision_mask = 2
 script = ExtResource("1_hnimx")
 player = 1
 player_controls = NodePath("PlayerControls")
@@ -32,6 +33,6 @@ script = ExtResource("3_2vdyo")
 [node name="Arrow" type="Sprite2D" parent="."]
 position = Vector2(9, 3)
 rotation = 1.5708
-texture = ExtResource("5_j8f41")
+texture = ExtResource("5_g4k4s")
 offset = Vector2(0.482849, -7.96478)
 script = ExtResource("6_lphht")

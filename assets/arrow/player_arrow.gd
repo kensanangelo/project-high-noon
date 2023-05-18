@@ -31,10 +31,12 @@ func _physics_process(delta):
 	self.rotation_degrees = new_rotation
 
 
-func show_arrow() -> void:
+func start_arrow() -> void:
 	self.visible = true
 
 
-func stop_arrow() -> float:
+func stop_arrow() -> void:
 	self.visible = false
+
+func get_angle() -> float:
 	return self.rotation_degrees
