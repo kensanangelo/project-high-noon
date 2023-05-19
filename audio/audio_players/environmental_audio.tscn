@@ -22,3 +22,5 @@ volume_db = -13.376
 [node name="EffectAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_2c2yp")
 volume_db = -24.746
+
+[node name="Bullets" type="Node" parent="."]

@@ -8,4 +8,5 @@ signal players_disabled
 
 signal bullet_fired(pos: Vector2, angle_degrees: float, from: Enums.Players)
 signal bullets_collided(pos: Vector2, involved_bullet1: String, involved_bullet2: String)
+signal bullet_hits_env(pos: Vector2)
 signal bullet_ends

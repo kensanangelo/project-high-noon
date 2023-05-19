@@ -130,6 +130,8 @@ func disable_player() -> void:
 	# cancels current movement
 	target = Vector2.ZERO
 
+	arrow.stop_arrow()
+
 
 func calculate_bullet_pos() -> Vector2:
 	var new_pos := self.global_position + Vector2(0, 4)

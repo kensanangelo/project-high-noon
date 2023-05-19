@@ -3,6 +3,10 @@ extends Node
 @export var victory_player: AudioStreamPlayer
 @export var wind_player: AudioStreamPlayer
 @export var effect_player: AudioStreamPlayer
+
+@export var hit_bullet_track = preload("res://audio/effects/bullet_ping.mp3")
+@export var hit_env_track = preload("res://audio/effects/bullet_hit_wood.mp3")
+
 ## How long between horse sound checks
 @export var effect_timer_wait_time: float = 3.0
 ## Percent chance of horse sound playing every X seconds
@@ -72,3 +76,25 @@ func try_play_random_sound() -> void:
 		effect_player.set_volume_db(sound.volume)
 		effect_player.set_pitch_scale(randf_range(0.8, 1.2))
 		effect_player.play()
+
+
+func play_hit_bullet(pos: Vector2) -> void:
+	create_audio_node(hit_bullet_track, pos, -10.0)
+
+
+func play_hit_env(pos: Vector2) -> void:
+	create_audio_node(hit_env_track, pos, -10.0)
+
+
+func create_audio_node(track: AudioStream, pos: Vector2, volume: float) -> void:
+	var audio_node := AudioStreamPlayer2D.new()
+	audio_node.set_stream(track)
+	audio_node.set_volume_db(volume)
+	audio_node.global_position = pos
+	$Bullets.add_child(audio_node)
+
+	audio_node.play()
+
+	await audio_node.finished
+
+	audio_node.queue_free()

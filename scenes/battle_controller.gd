@@ -35,6 +35,7 @@ func _ready() -> void:
 	SignalBus.player_died.connect(handle_player_died)
 	SignalBus.bullet_fired.connect(handle_bullet_fired)
 	SignalBus.bullets_collided.connect(handle_bullets_collided)
+	SignalBus.bullet_hits_env.connect(handle_bullet_hits_env)
 	SignalBus.bullet_ends.connect(handle_bullet_ends)
 
 	if environmental_audio_player:
@@ -73,6 +74,9 @@ func handle_bullet_fired(pos: Vector2, angle: float, from: Enums.Players) -> voi
 
 	bullet_counter += 1
 
+func handle_bullet_hits_env(pos: Vector2) -> void:
+	environmental_audio_player.play_hit_env(pos)
+
 func handle_bullets_collided(pos: Vector2, bullet1: String, bullet2: String) -> void:
 	# If the bullets have already collided, don't render another explosion
 	if bullets_have_collided.has(bullet1) || bullets_have_collided.has(bullet2):
@@ -84,6 +88,7 @@ func handle_bullets_collided(pos: Vector2, bullet1: String, bullet2: String) -> 
 
 	var explosion: AnimatedSprite2D = explosion_class.instantiate()
 	explosion.global_position = pos
+	environmental_audio_player.play_hit_bullet(pos)
 	explosions_container.add_child(explosion)
 
 func handle_bullet_ends() -> void:

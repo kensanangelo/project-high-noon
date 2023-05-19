@@ -38,9 +38,10 @@ func _physics_process(delta):
 
 		if collider is Player:
 			collider.gets_hit()
-
-		if collider is Bullet:
+		elif collider is Bullet:
 			SignalBus.bullets_collided.emit(collision.get_position(), self.name, collider.name)
+		else:
+			SignalBus.bullet_hits_env.emit(collision.get_position())
 
 		die()
 
