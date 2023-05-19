@@ -10,10 +10,10 @@ height = 10.0
 [node name="Bullet" type="CharacterBody2D"]
 position = Vector2(40, 3)
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("1_lb4ma")
 speed = 250
-lifetime = 2.0
+lifetime = 3.0
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_7xbem")

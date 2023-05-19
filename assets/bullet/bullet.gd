@@ -31,15 +31,18 @@ func _physics_process(delta):
 	if collision:
 		var collider: Node = collision.get_collider()
 
-		# If it hits a player that was not it's creator
+		# If it hits the player that created it, ignore completely
 		# We do this because the bullet spawns inside the creator's hitbox
-		if collider is Player && collider.name != Enums.PlayerNodeNames[parent_player]:
+		if collider is Player && collider.name == Enums.PlayerNodeNames[parent_player]:
+			return
+
+		if collider is Player:
 			collider.gets_hit()
-			die()
 
 		if collider is Bullet:
 			SignalBus.bullets_collided.emit(collision.get_position(), self.name, collider.name)
-			die()
+
+		die()
 
 
 func die() -> void:

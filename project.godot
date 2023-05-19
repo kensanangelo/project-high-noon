@@ -51,6 +51,7 @@ player_2_shoot={
 
 2d_physics/layer_1="Players"
 2d_physics/layer_2="Bullets"
+2d_physics/layer_3="Environment"
 
 [rendering]
 
