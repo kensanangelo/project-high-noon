@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dont7vfyaf1yj"]
+
+[ext_resource type="Script" path="res://audio/audio_players/environmental_audio.gd" id="1_67vex"]
+[ext_resource type="AudioStream" uid="uid://bxd4judyjncri" path="res://audio/effects/victory_full.mp3" id="2_wqxyb"]
+[ext_resource type="AudioStream" uid="uid://ckp821ddgtkn1" path="res://audio/effects/wind-high.mp3" id="3_mefmw"]
+[ext_resource type="AudioStream" uid="uid://gjeev07d5gv6" path="res://audio/effects/hawk_cry.mp3" id="4_2c2yp"]
+
+[node name="EnvironmentalAudio" type="Node" node_paths=PackedStringArray("victory_player", "wind_player", "effect_player")]
+script = ExtResource("1_67vex")
+victory_player = NodePath("VictoryAudio")
+wind_player = NodePath("WindAudio")
+effect_player = NodePath("EffectAudio")
+
+[node name="VictoryAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wqxyb")
+volume_db = -20.0
+
+[node name="WindAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mefmw")
+volume_db = -13.376
+
+[node name="EffectAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2c2yp")
+volume_db = -24.746

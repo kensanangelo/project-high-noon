@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var player: Enums.Players
 @export var player_controls: Node
+@export var audio_controller: Node
 @export var animator: PlayerAnimator
 @export var arrow: Sprite2D
 
@@ -33,6 +34,9 @@ func _ready() -> void:
 	assert(animator, "Animator not connected")
 	assert(arrow, "Arrow not connected")
 
+	if not audio_controller:
+		printerr("Audio controller not connected")
+
 
 func _physics_process(_delta) -> void:
 	# if close to target, clear target
@@ -61,7 +65,7 @@ func _on_player_steps() -> void:
 
 	steps_taken += 1
 	SignalBus.player_stepped.emit(player, steps_taken)
-
+	audio_controller.play_step()
 	animator.start_walking()
 	var new_x := self.position.x + movement_step
 	target = Vector2(new_x, self.position.y)
@@ -69,9 +73,11 @@ func _on_player_steps() -> void:
 
 func _on_player_aims() -> void:
 	if bullets_left <= 0:
+		audio_controller.play_empty()
 		return
 
 	animator.turn_around()
+	audio_controller.play_cocked()
 	arrow.start_arrow()
 
 
@@ -84,6 +90,7 @@ func _on_player_shoots() -> void:
 	SignalBus.bullet_fired.emit(calculate_bullet_pos(), calculate_shot_angle(), player)
 
 	bullets_left -= 1
+	audio_controller.play_shoot()
 	animator.play_shooting()
 	SignalBus.player_shot.emit(player, bullets_left)
 	has_shot = true
@@ -94,6 +101,7 @@ func gets_hit() -> void:
 		return
 
 	SignalBus.player_died.emit(player)
+	audio_controller.play_hurt()
 	animator.play_dying()
 
 

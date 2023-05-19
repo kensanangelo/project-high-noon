@@ -1,18 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqa4tuf7dmyfx"]
+[gd_scene load_steps=6 format=3 uid="uid://cqa4tuf7dmyfx"]
 
 [ext_resource type="Script" path="res://scenes/battle_controller.gd" id="1_0nexq"]
 [ext_resource type="PackedScene" uid="uid://crke12c1y67h8" path="res://assets/player/player.tscn" id="2_amspw"]
 [ext_resource type="TileSet" uid="uid://bojtc8vecybj5" path="res://assets/ground/ground_tileset.tres" id="2_xcp5e"]
 [ext_resource type="PackedScene" uid="uid://dimwgid5ew0fj" path="res://ui/battle_ui.tscn" id="3_rcp85"]
-[ext_resource type="AudioStream" uid="uid://bxd4judyjncri" path="res://audio/effects/victory_full.mp3" id="5_cl3t4"]
-[ext_resource type="Script" path="res://audio/VictoryPlayer.gd" id="6_y7orr"]
+[ext_resource type="PackedScene" uid="uid://dont7vfyaf1yj" path="res://audio/audio_players/environmental_audio.tscn" id="5_4xdn8"]
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("explosions_container", "bullet_container", "victory_audio_player")]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("explosions_container", "bullet_container", "environmental_audio_player")]
 script = ExtResource("1_0nexq")
 explosions_container = NodePath("Effects/Explosions")
 bullet_container = NodePath("Effects/Bullets")
-victory_audio_player = NodePath("VictoryAudioPlayer")
-game_over_delay = 4.0
+environmental_audio_player = NodePath("Environment/EnvironmentalAudio")
+game_over_delay = 4.3
 
 [node name="Environment" type="Node" parent="."]
 
@@ -46,6 +45,8 @@ layer_3/y_sort_origin = 0
 layer_3/z_index = 1
 layer_3/tile_data = PackedInt32Array()
 
+[node name="EnvironmentalAudio" parent="Environment" instance=ExtResource("5_4xdn8")]
+
 [node name="Players" type="Node" parent="."]
 
 [node name="Player1" parent="Players" instance=ExtResource("2_amspw")]
@@ -66,7 +67,3 @@ metadata/_edit_lock_ = true
 [node name="Bullets" type="Node" parent="Effects"]
 
 [node name="Explosions" type="Node" parent="Effects"]
-
-[node name="VictoryAudioPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_cl3t4")
-script = ExtResource("6_y7orr")

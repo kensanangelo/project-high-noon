@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://crke12c1y67h8"]
+[gd_scene load_steps=14 format=3 uid="uid://crke12c1y67h8"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_hnimx"]
 [ext_resource type="SpriteFrames" uid="uid://b7d3swjlkfy70" path="res://assets/player/player_anims.tres" id="1_mo6py"]
@@ -6,14 +6,21 @@
 [ext_resource type="Script" path="res://assets/player/player_animator.gd" id="3_3n3x7"]
 [ext_resource type="Texture2D" uid="uid://dc4ete8w8qd46" path="res://assets/arrow/art/arrow.png" id="5_g4k4s"]
 [ext_resource type="Script" path="res://assets/arrow/player_arrow.gd" id="6_lphht"]
+[ext_resource type="Script" path="res://assets/player/audio_player.gd" id="7_th5tq"]
+[ext_resource type="AudioStream" uid="uid://cbqwickvi7ltv" path="res://audio/effects/player_hurt.mp3" id="8_iqfw6"]
+[ext_resource type="AudioStream" uid="uid://uqqm0qkypmsj" path="res://audio/effects/gun_shot.mp3" id="9_k5057"]
+[ext_resource type="AudioStream" uid="uid://cw0ims8halsfm" path="res://audio/effects/player_step.mp3" id="10_e2etu"]
+[ext_resource type="AudioStream" uid="uid://hmbq3cp1v172" path="res://audio/effects/gun_empty.mp3" id="11_avlrn"]
+[ext_resource type="AudioStream" uid="uid://dd85udgtf1iwj" path="res://audio/effects/gun_cock.mp3" id="12_ley0t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_brfgm"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_controls", "animator", "arrow")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_controls", "audio_controller", "animator", "arrow")]
 collision_mask = 2
 script = ExtResource("1_hnimx")
 player = 1
 player_controls = NodePath("PlayerControls")
+audio_controller = NodePath("Audio")
 animator = NodePath("AnimatedSprite")
 arrow = NodePath("Arrow")
 movement_step = 30
@@ -37,3 +44,33 @@ rotation = 1.5708
 texture = ExtResource("5_g4k4s")
 offset = Vector2(0.482849, -7.96478)
 script = ExtResource("6_lphht")
+
+[node name="Audio" type="Node" parent="." node_paths=PackedStringArray("hurt_player", "shoot_player", "step_player", "empty_player", "cocked_player")]
+script = ExtResource("7_th5tq")
+hurt_player = NodePath("HurtAudio")
+shoot_player = NodePath("ShootAudio")
+step_player = NodePath("StepAudio")
+empty_player = NodePath("EmptyAudio")
+cocked_player = NodePath("CockedAudio")
+
+[node name="HurtAudio" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("8_iqfw6")
+volume_db = -20.0
+
+[node name="ShootAudio" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("9_k5057")
+
+[node name="StepAudio" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("10_e2etu")
+volume_db = -30.0
+pitch_scale = 1.12
+
+[node name="EmptyAudio" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("11_avlrn")
+volume_db = -15.0
+pitch_scale = 1.12
+
+[node name="CockedAudio" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("12_ley0t")
+volume_db = -18.0
+pitch_scale = 1.12

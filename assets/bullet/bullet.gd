@@ -26,7 +26,7 @@ func setup(_position, _direction, parent: Enums.Players):
 
 
 func _physics_process(delta):
-	var collision = move_and_collide(velocity * delta)
+	var collision := move_and_collide(velocity * delta)
 
 	if collision:
 		var collider: Node = collision.get_collider()

@@ -2,7 +2,7 @@ extends Node2D
 
 @export var explosions_container: Node
 @export var bullet_container: Node
-@export var victory_audio_player: Node
+@export var environmental_audio_player: Node
 ## How many steps the players take before shooting
 @export var total_steps := 5
 @export var game_over_delay := 2.5
@@ -26,7 +26,9 @@ var bullets_have_collided: Array[String] = []
 func _ready() -> void:
 	assert(explosions_container != null, "Explosions container is null")
 	assert(bullet_container != null, "Bullet container is null")
-	assert(victory_audio_player != null, "Victory audio player is null")
+
+	if environmental_audio_player == null:
+		printerr("Environmental audio player is null. Will not play env sound effects")
 
 	SignalBus.player_shot.connect(handle_shooting_rules)
 	SignalBus.player_stepped.connect(handle_step)
@@ -34,6 +36,9 @@ func _ready() -> void:
 	SignalBus.bullet_fired.connect(handle_bullet_fired)
 	SignalBus.bullets_collided.connect(handle_bullets_collided)
 	SignalBus.bullet_ends.connect(handle_bullet_ends)
+
+	if environmental_audio_player:
+		environmental_audio_player.play_ambient()
 	
 func handle_step(player: Enums.Players, count: int) -> void:
 	check_max_steps(player, count)
@@ -119,7 +124,10 @@ func generate_result_from_winner(winner: Enums.Players) -> Enums.BattleResults:
 
 func end_game(results: Enums.BattleResults) -> void:
 	SignalBus.players_disabled.emit()
-	victory_audio_player.play_victory()
+
+	if environmental_audio_player:
+		environmental_audio_player.stop_ambient()
+		environmental_audio_player.play_gameover()
 
 	var timer = Timer.new()
 	timer.wait_time = game_over_delay
