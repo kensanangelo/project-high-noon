@@ -2,6 +2,7 @@ extends Node2D
 
 @export var explosions_container: Node
 @export var bullet_container: Node
+@export var victory_audio_player: Node
 ## How many steps the players take before shooting
 @export var total_steps := 5
 @export var game_over_delay := 2.5
@@ -25,6 +26,7 @@ var bullets_have_collided: Array[String] = []
 func _ready() -> void:
 	assert(explosions_container != null, "Explosions container is null")
 	assert(bullet_container != null, "Bullet container is null")
+	assert(victory_audio_player != null, "Victory audio player is null")
 
 	SignalBus.player_shot.connect(handle_shooting_rules)
 	SignalBus.player_stepped.connect(handle_step)
@@ -117,6 +119,7 @@ func generate_result_from_winner(winner: Enums.Players) -> Enums.BattleResults:
 
 func end_game(results: Enums.BattleResults) -> void:
 	SignalBus.players_disabled.emit()
+	victory_audio_player.play_victory()
 
 	var timer = Timer.new()
 	timer.wait_time = game_over_delay
@@ -125,5 +128,6 @@ func end_game(results: Enums.BattleResults) -> void:
 
 	await timer.timeout
 
+	print('change scene')
 	SceneManager.end_battle(results)
 	

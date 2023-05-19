@@ -1,20 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://48rvxsfa1mji"]
+[gd_scene load_steps=7 format=3 uid="uid://cqa4tuf7dmyfx"]
 
 [ext_resource type="Script" path="res://scenes/battle_controller.gd" id="1_0nexq"]
 [ext_resource type="PackedScene" uid="uid://crke12c1y67h8" path="res://assets/player/player.tscn" id="2_amspw"]
 [ext_resource type="TileSet" uid="uid://bojtc8vecybj5" path="res://assets/ground/ground_tileset.tres" id="2_xcp5e"]
 [ext_resource type="PackedScene" uid="uid://dimwgid5ew0fj" path="res://ui/battle_ui.tscn" id="3_rcp85"]
+[ext_resource type="AudioStream" uid="uid://bxd4judyjncri" path="res://audio/effects/victory_full.mp3" id="5_cl3t4"]
+[ext_resource type="Script" path="res://audio/VictoryPlayer.gd" id="6_y7orr"]
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("explosions_container", "bullet_container")]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("explosions_container", "bullet_container", "victory_audio_player")]
 script = ExtResource("1_0nexq")
 explosions_container = NodePath("Effects/Explosions")
 bullet_container = NodePath("Effects/Bullets")
+victory_audio_player = NodePath("VictoryAudioPlayer")
+game_over_delay = 4.0
 
-[node name="BG" type="Node" parent="."]
+[node name="Environment" type="Node" parent="."]
 
-[node name="Ground" type="Node2D" parent="BG"]
+[node name="Ground" type="Node2D" parent="Environment"]
 
-[node name="TileMap" type="TileMap" parent="BG/Ground"]
+[node name="TileMap" type="TileMap" parent="Environment/Ground"]
 tile_set = ExtResource("2_xcp5e")
 format = 2
 layer_0/name = "Ground"
@@ -62,3 +66,7 @@ metadata/_edit_lock_ = true
 [node name="Bullets" type="Node" parent="Effects"]
 
 [node name="Explosions" type="Node" parent="Effects"]
+
+[node name="VictoryAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_cl3t4")
+script = ExtResource("6_y7orr")
