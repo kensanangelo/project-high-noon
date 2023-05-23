@@ -39,13 +39,14 @@ func _ready() -> void:
 
 
 func _physics_process(_delta) -> void:
+	# if no target, dont move
+	if target == Vector2.ZERO:
+		return
+		
 	# if close to target, clear target
 	if self.position.distance_to(target) < 10:
 		target = Vector2.ZERO
 		animator.stop_walking()
-
-	# if no target, dont move
-	if target == Vector2.ZERO:
 		return
 
 	self.velocity = (target - self.position).normalized() * speed
