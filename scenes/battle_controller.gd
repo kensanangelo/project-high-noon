@@ -54,6 +54,7 @@ func check_max_steps(player: Enums.Players, count: int) -> void:
 
 func notify_if_players_ready_to_shoot() -> void:
 	if(player_1.hit_max_steps and player_2.hit_max_steps):
+		environmental_audio_player.play_fight()
 		SignalBus.players_ready_to_shoot.emit()
 
 func handle_shooting_rules(player: Enums.Players, count: int) -> void:

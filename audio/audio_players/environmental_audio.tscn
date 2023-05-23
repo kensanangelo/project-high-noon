@@ -1,22 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://dont7vfyaf1yj"]
+[gd_scene load_steps=6 format=3 uid="uid://b4o5e073n1nyq"]
 
 [ext_resource type="Script" path="res://audio/audio_players/environmental_audio.gd" id="1_67vex"]
 [ext_resource type="AudioStream" uid="uid://bxd4judyjncri" path="res://audio/effects/victory_full.mp3" id="2_wqxyb"]
-[ext_resource type="AudioStream" uid="uid://ckp821ddgtkn1" path="res://audio/effects/wind-high.mp3" id="3_mefmw"]
+[ext_resource type="AudioStream" uid="uid://ckp821ddgtkn1" path="res://audio/effects/wind_high.mp3" id="3_u78xk"]
 [ext_resource type="AudioStream" uid="uid://gjeev07d5gv6" path="res://audio/effects/hawk_cry.mp3" id="4_2c2yp"]
+[ext_resource type="AudioStream" uid="uid://x1esdcxnolya" path="res://audio/effects/voice_fight.mp3" id="5_pwlfr"]
 
-[node name="EnvironmentalAudio" type="Node" node_paths=PackedStringArray("victory_player", "wind_player", "effect_player")]
+[node name="EnvironmentalAudio" type="Node" node_paths=PackedStringArray("victory_player", "effect_player", "wind_player", "fight_player")]
 script = ExtResource("1_67vex")
 victory_player = NodePath("VictoryAudio")
-wind_player = NodePath("WindAudio")
 effect_player = NodePath("EffectAudio")
+wind_player = NodePath("WindAudio")
+fight_player = NodePath("FightAudio")
 
 [node name="VictoryAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_wqxyb")
 volume_db = -20.0
 
+[node name="FightAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_pwlfr")
+volume_db = -24.746
+
 [node name="WindAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_mefmw")
+stream = ExtResource("3_u78xk")
 volume_db = -10.0
 
 [node name="EffectAudio" type="AudioStreamPlayer" parent="."]

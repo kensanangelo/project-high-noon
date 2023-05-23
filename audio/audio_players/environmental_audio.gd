@@ -1,8 +1,9 @@
 extends Node
 
 @export var victory_player: AudioStreamPlayer
-@export var wind_player: AudioStreamPlayer
 @export var effect_player: AudioStreamPlayer
+@export var wind_player: AudioStreamPlayer
+@export var fight_player: AudioStreamPlayer
 
 @export var hit_bullet_track = preload("res://audio/effects/bullet_ping.mp3")
 @export var hit_env_track = preload("res://audio/effects/bullet_hit_wood.mp3")
@@ -26,6 +27,7 @@ var possible_sounds: Array = [
 
 func _ready() -> void:
 	assert(victory_player != null, "victory_player is not connected")
+	assert(fight_player != null, "fight_player is not connected")
 	assert(wind_player != null, "wind_player is not connected")
 	assert(effect_player != null, "effect_player is not connected")
 
@@ -33,6 +35,9 @@ func _ready() -> void:
 	effect_timer.set_one_shot(false)
 	effect_timer.timeout.connect(try_play_random_sound)
 	self.add_child(effect_timer)
+
+func play_fight() -> void:
+	fight_player.play()
 
 
 func play_gameover() -> void:
