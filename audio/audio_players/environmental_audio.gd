@@ -19,8 +19,8 @@ var horse_track: AudioStream = load("res://audio/effects/horse_walking.mp3")
 var hawk_track: AudioStream = load("res://audio/effects/hawk_cry.mp3")
 
 var possible_sounds: Array = [
-	{"name": "horse", "chance": 0.1, "file": horse_track, "volume": -45.144},
-	{"name": "hawk", "chance": 0.1, "file": hawk_track, "volume": -24.746}
+	{"name": "horse", "chance": 0.1, "file": horse_track, "volume": -42.144},
+	{"name": "hawk", "chance": 0.1, "file": hawk_track, "volume": -21.746}
 ]
 
 

@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0hap5sacgvtr"]
+
+[ext_resource type="Theme" uid="uid://maugmt213e1w" path="res://ui/theme/main_theme.tres" id="1_v4y3r"]
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_wrmup"]
+[ext_resource type="AudioStream" uid="uid://dqqp7cwm615l0" path="res://audio/effects/button-click.mp3" id="3_pndw0"]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("single_player_button", "two_player_button", "how_to_play_button", "options_button", "click_player")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wrmup")
+single_player_button = NodePath("ButtonGroup/OnePlayer")
+two_player_button = NodePath("ButtonGroup/TwoPlayers")
+how_to_play_button = NodePath("ButtonGroup/HowToPlay")
+options_button = NodePath("ButtonGroup/Options")
+click_player = NodePath("ClickPlayer")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 0.890196, 1)
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1.0
+offset_top = 80.0
+offset_bottom = 257.0
+grow_horizontal = 2
+theme = ExtResource("1_v4y3r")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "Cowboy Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonGroup" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 474.0
+offset_top = 294.0
+offset_right = -456.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="OnePlayer" type="Button" parent="ButtonGroup"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+disabled = true
+text = "1 Player"
+
+[node name="TwoPlayers" type="Button" parent="ButtonGroup"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "2 Player"
+
+[node name="HowToPlay" type="Button" parent="ButtonGroup"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+disabled = true
+text = "How to Play"
+
+[node name="Options" type="Button" parent="ButtonGroup"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+disabled = true
+text = "Options"
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pndw0")
+pitch_scale = 1.5

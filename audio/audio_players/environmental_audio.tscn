@@ -17,7 +17,7 @@ volume_db = -20.0
 
 [node name="WindAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_mefmw")
-volume_db = -13.376
+volume_db = -10.0
 
 [node name="EffectAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_2c2yp")
