@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dia3axqc5axy8"]
+[gd_scene load_steps=5 format=3 uid="uid://dia3axqc5axy8"]
 
 [ext_resource type="Script" path="res://scenes/game_over_scene.gd" id="1_jf0qo"]
+[ext_resource type="Theme" uid="uid://maugmt213e1w" path="res://ui/theme/main_theme.tres" id="2_xddj7"]
+[ext_resource type="LabelSettings" uid="uid://c0bwv0p5exjpv" path="res://ui/theme/xlarge_label_settings.tres" id="3_8mo7a"]
+[ext_resource type="LabelSettings" uid="uid://b8imoowrj1wsd" path="res://ui/theme/large_label_settings.tres" id="4_r6eup"]
 
-[node name="GameOverScene" type="Control" node_paths=PackedStringArray("label")]
+[node name="GameOver" type="Control" node_paths=PackedStringArray("result_label", "explanation_label", "menu_button")]
 layout_mode = 3
 anchor_left = -0.5
 anchor_top = -0.5
@@ -11,7 +14,18 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jf0qo")
-label = NodePath("VBoxContainer/Status")
+result_label = NodePath("VBoxContainer/Status")
+explanation_label = NodePath("VBoxContainer/Explanation")
+menu_button = NodePath("VBoxContainer/MenuButton")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 0.890196, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)
@@ -29,12 +43,29 @@ grow_vertical = 2
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_xddj7")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Game Over"
+label_settings = ExtResource("3_8mo7a")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Status" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Reason:"
+text = "Status"
+label_settings = ExtResource("4_r6eup")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Explanation" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Reason:"
+label_settings = ExtResource("4_r6eup")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+text = "Return to Menu"

@@ -15,3 +15,4 @@ default_font_size = 16
 /fonts/Body = ExtResource("1_vyxrg")
 /styles/Default = SubResource("StyleBoxEmpty_e3w7j")
 Label/font_sizes/font_size = 12
+Label/font_sizes/header = 64

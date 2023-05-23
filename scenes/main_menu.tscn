@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0hap5sacgvtr"]
+[gd_scene load_steps=5 format=3 uid="uid://d0hap5sacgvtr"]
 
 [ext_resource type="Theme" uid="uid://maugmt213e1w" path="res://ui/theme/main_theme.tres" id="1_v4y3r"]
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_wrmup"]
+[ext_resource type="LabelSettings" uid="uid://c0bwv0p5exjpv" path="res://ui/theme/xlarge_label_settings.tres" id="3_jmie4"]
 [ext_resource type="AudioStream" uid="uid://dqqp7cwm615l0" path="res://audio/effects/button-click.mp3" id="3_pndw0"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("single_player_button", "two_player_button", "how_to_play_button", "options_button", "click_player")]
@@ -40,6 +41,7 @@ theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
 text = "Cowboy Game"
+label_settings = ExtResource("3_jmie4")
 horizontal_alignment = 1
 vertical_alignment = 1
 

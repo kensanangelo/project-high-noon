@@ -51,10 +51,10 @@ layer_3/tile_data = PackedInt32Array()
 
 [node name="Player1" parent="Players" instance=ExtResource("2_amspw")]
 position = Vector2(-10, -3)
-player = 0
 
 [node name="Player2" parent="Players" instance=ExtResource("2_amspw")]
 position = Vector2(10, -3)
+player = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 metadata/_edit_lock_ = true

@@ -1,10 +1,10 @@
 extends Node
 
-enum Players { PLAYER_1, PLAYER_2 }
+enum Players { PLAYER_1 = 1, PLAYER_2 = 2 }
 # gdlint: disable=constant-name
 const PlayerNodeNames = {
-	0: "Player1",
-	1: "Player2",
+	1: "Player1",
+	2: "Player2",
 }
 
 # gdlint: disable=class-definitions-order

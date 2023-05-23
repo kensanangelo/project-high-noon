@@ -63,7 +63,7 @@ func handle_shooting_rules(player: Enums.Players, count: int) -> void:
 func handle_player_died(player: Enums.Players) -> void:
 	var winner := get_opposite_player(player)
 	var result := generate_result_from_winner(winner)
-	end_game(result)
+	end_game(result, str("Player ", player, " was killed"))
 
 func handle_bullet_fired(pos: Vector2, angle: float, from: Enums.Players) -> void:
 	var bullet: Bullet = bullet_class.instantiate()
@@ -101,7 +101,7 @@ func check_preemptive_attack(shooter: Enums.Players) -> void:
 	if(!player_1.hit_max_steps || !player_2.hit_max_steps):
 		var winner := get_opposite_player(shooter)
 		var result := generate_result_from_winner(winner)
-		end_game(result)
+		end_game(result, str("Player ", shooter, " shot before both players were ready"))
 		return
 
 func check_out_of_bullets(player: Enums.Players, count: int) -> void:
@@ -113,7 +113,7 @@ func check_out_of_bullets(player: Enums.Players, count: int) -> void:
 
 func check_tie() -> void:
 	if player_1.out_of_bullets and player_2.out_of_bullets:
-		end_game(Enums.BattleResults.TIE)
+		end_game(Enums.BattleResults.TIE, "Both players ran out of bullets")
 		
 func get_opposite_player(player: Enums.Players) -> Enums.Players:
 	if player == Enums.Players.PLAYER_1:
@@ -127,7 +127,7 @@ func generate_result_from_winner(winner: Enums.Players) -> Enums.BattleResults:
 	else:
 		return Enums.BattleResults.PLAYER_1_WINS
 
-func end_game(results: Enums.BattleResults) -> void:
+func end_game(results: Enums.BattleResults, reason: String) -> void:
 	SignalBus.players_disabled.emit()
 
 	if environmental_audio_player:
@@ -142,5 +142,5 @@ func end_game(results: Enums.BattleResults) -> void:
 	await timer.timeout
 
 	print('change scene')
-	SceneManager.end_battle(results)
+	SceneManager.end_battle(results, reason)
 	

@@ -1,11 +1,16 @@
 extends Control
 
-@export var label: Label
+@export var result_label: Label
+@export var explanation_label: Label
+@export var menu_button: Button
+
 var state: Enums.BattleResults = Enums.BattleResults.TIE
+var explanation: String = ""
 
 
 func _ready() -> void:
-	assert(label != null, "Game Over Label is null")
+	assert(result_label != null, "Game Over Label is null")
+	assert(explanation_label != null, "Explanation Label is null")
 
 	var text := ""
 
@@ -17,4 +22,11 @@ func _ready() -> void:
 		Enums.BattleResults.TIE:
 			text = "You tied!"
 
-	label.text = text
+	result_label.text = text
+	explanation_label.text = explanation
+
+	menu_button.button_up.connect(on_menu_button_pressed)
+
+
+func on_menu_button_pressed() -> void:
+	SceneManager.go_to_menu()
