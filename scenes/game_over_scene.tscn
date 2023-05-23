@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dia3axqc5axy8"]
+[gd_scene load_steps=7 format=3 uid="uid://dia3axqc5axy8"]
 
 [ext_resource type="Script" path="res://scenes/game_over_scene.gd" id="1_jf0qo"]
 [ext_resource type="Theme" uid="uid://maugmt213e1w" path="res://ui/theme/main_theme.tres" id="2_xddj7"]
 [ext_resource type="LabelSettings" uid="uid://c0bwv0p5exjpv" path="res://ui/theme/xlarge_label_settings.tres" id="3_8mo7a"]
 [ext_resource type="LabelSettings" uid="uid://b8imoowrj1wsd" path="res://ui/theme/large_label_settings.tres" id="4_r6eup"]
+[ext_resource type="LabelSettings" uid="uid://41hvhwqwdu3a" path="res://ui/theme/label_settings.tres" id="5_t4ho7"]
+[ext_resource type="PackedScene" uid="uid://cvoj6ynmtk35g" path="res://ui/components/menu_button.tscn" id="6_4eela"]
 
 [node name="GameOver" type="Control" node_paths=PackedStringArray("result_label", "explanation_label", "menu_button")]
 layout_mode = 3
@@ -40,6 +42,7 @@ offset_top = -13.0
 offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -49,6 +52,7 @@ text = "Game Over"
 label_settings = ExtResource("3_8mo7a")
 horizontal_alignment = 1
 vertical_alignment = 1
+uppercase = true
 
 [node name="Status" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -60,12 +64,10 @@ vertical_alignment = 1
 [node name="Explanation" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Reason:"
-label_settings = ExtResource("4_r6eup")
+label_settings = ExtResource("5_t4ho7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuButton" type="Button" parent="VBoxContainer"]
+[node name="MenuButton" parent="VBoxContainer" instance=ExtResource("6_4eela")]
 layout_mode = 2
-size_flags_horizontal = 4
-mouse_default_cursor_shape = 2
-text = "Return to Menu"
+text = "Return to Main Menu"

@@ -25,7 +25,7 @@ func _ready() -> void:
 	result_label.text = text
 	explanation_label.text = explanation
 
-	menu_button.button_up.connect(on_menu_button_pressed)
+	menu_button.clicked.connect(on_menu_button_pressed)
 
 
 func on_menu_button_pressed() -> void:

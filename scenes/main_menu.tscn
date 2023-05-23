@@ -3,9 +3,9 @@
 [ext_resource type="Theme" uid="uid://maugmt213e1w" path="res://ui/theme/main_theme.tres" id="1_v4y3r"]
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_wrmup"]
 [ext_resource type="LabelSettings" uid="uid://c0bwv0p5exjpv" path="res://ui/theme/xlarge_label_settings.tres" id="3_jmie4"]
-[ext_resource type="AudioStream" uid="uid://dqqp7cwm615l0" path="res://audio/effects/button-click.mp3" id="3_pndw0"]
+[ext_resource type="PackedScene" uid="uid://cvoj6ynmtk35g" path="res://ui/components/menu_button.tscn" id="4_3pplg"]
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("single_player_button", "two_player_button", "how_to_play_button", "options_button", "click_player")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("single_player_button", "two_player_button", "how_to_play_button", "options_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +17,6 @@ single_player_button = NodePath("ButtonGroup/OnePlayer")
 two_player_button = NodePath("ButtonGroup/TwoPlayers")
 how_to_play_button = NodePath("ButtonGroup/HowToPlay")
 options_button = NodePath("ButtonGroup/Options")
-click_player = NodePath("ClickPlayer")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -58,29 +57,21 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="OnePlayer" type="Button" parent="ButtonGroup"]
+[node name="OnePlayer" parent="ButtonGroup" instance=ExtResource("4_3pplg")]
 layout_mode = 2
-mouse_default_cursor_shape = 2
 disabled = true
-text = "1 Player"
+text = "One Player"
 
-[node name="TwoPlayers" type="Button" parent="ButtonGroup"]
+[node name="TwoPlayers" parent="ButtonGroup" instance=ExtResource("4_3pplg")]
 layout_mode = 2
-mouse_default_cursor_shape = 2
-text = "2 Player"
+text = "Two Players"
 
-[node name="HowToPlay" type="Button" parent="ButtonGroup"]
+[node name="HowToPlay" parent="ButtonGroup" instance=ExtResource("4_3pplg")]
 layout_mode = 2
-mouse_default_cursor_shape = 2
 disabled = true
 text = "How to Play"
 
-[node name="Options" type="Button" parent="ButtonGroup"]
+[node name="Options" parent="ButtonGroup" instance=ExtResource("4_3pplg")]
 layout_mode = 2
-mouse_default_cursor_shape = 2
 disabled = true
 text = "Options"
-
-[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_pndw0")
-pitch_scale = 1.5

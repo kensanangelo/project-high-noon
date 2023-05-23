@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvoj6ynmtk35g"]
+
+[ext_resource type="Script" path="res://ui/components/menu_button.gd" id="1_b0mue"]
+[ext_resource type="AudioStream" uid="uid://dqqp7cwm615l0" path="res://audio/effects/button-click.mp3" id="2_sm8sj"]
+
+[node name="MenuButton" type="Button" node_paths=PackedStringArray("click_player")]
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+text = "Click me"
+script = ExtResource("1_b0mue")
+click_player = NodePath("ClickPlayer")
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_sm8sj")
+pitch_scale = 1.5
