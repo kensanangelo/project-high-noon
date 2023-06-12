@@ -1,12 +1,62 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvoj6ynmtk35g"]
+[gd_scene load_steps=11 format=3 uid="uid://dtht50o3nag5f"]
 
 [ext_resource type="Script" path="res://ui/components/menu_button.gd" id="1_b0mue"]
+[ext_resource type="Theme" uid="uid://maugmt213e1w" path="res://ui/theme/main_theme.tres" id="1_l85a4"]
+[ext_resource type="Texture2D" uid="uid://jrtjiauqhii4" path="res://ui/art/paper-nine-pressed.png" id="2_4tgnc"]
 [ext_resource type="AudioStream" uid="uid://dqqp7cwm615l0" path="res://audio/effects/button-click.mp3" id="2_sm8sj"]
+[ext_resource type="Texture2D" uid="uid://diad1d1vyc15e" path="res://ui/art/paper-tan-nine.png" id="3_rnepa"]
+[ext_resource type="Texture2D" uid="uid://ctdp1fwkl2bnj" path="res://ui/art/paper-nine.png" id="4_hb2hk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ch6xt"]
+texture = ExtResource("4_hb2hk")
+texture_margin_left = 5.0
+texture_margin_top = 3.0
+texture_margin_right = 5.0
+texture_margin_bottom = 3.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7sy7x"]
+texture = ExtResource("4_hb2hk")
+texture_margin_left = 5.0
+texture_margin_top = 3.0
+texture_margin_right = 5.0
+texture_margin_bottom = 3.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iwj8p"]
+texture = ExtResource("2_4tgnc")
+texture_margin_left = 5.0
+texture_margin_top = 3.0
+texture_margin_right = 5.0
+texture_margin_bottom = 3.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uffir"]
+texture = ExtResource("3_rnepa")
+texture_margin_left = 5.0
+texture_margin_top = 3.0
+texture_margin_right = 5.0
+texture_margin_bottom = 3.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.980392, 0.960784, 0.956863, 1)
 
 [node name="MenuButton" type="Button" node_paths=PackedStringArray("click_player")]
-size_flags_horizontal = 4
+anchors_preset = -1
+anchor_right = 0.051
+anchor_bottom = 0.043
+offset_right = 0.247997
+offset_bottom = 0.136
 mouse_default_cursor_shape = 2
-text = "Click me"
+theme = ExtResource("1_l85a4")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ch6xt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7sy7x")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_iwj8p")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_uffir")
+text = "This is test"
 script = ExtResource("1_b0mue")
 click_player = NodePath("ClickPlayer")
 
