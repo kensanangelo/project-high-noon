@@ -1,5 +1,7 @@
 # Project High Noon (Working Title)
 
+![Image of the game](./screenshot.png)
+
 ## About
 
 This is a game in progress built in Godot 4 using GDScript. The concept is simply that two players compete in an old west cowboy duel on one keyboard (for now). I am open to suggestions and thoughts, so feel free to reach out!
